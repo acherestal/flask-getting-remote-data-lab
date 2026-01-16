@@ -2,12 +2,13 @@ import requests
 import json
 
 class GetRequester:
-
     def __init__(self, url):
         self.url = url
 
     def get_response_body(self):
-        pass
+        response = requests.get(self.url)
+        return response.content  # bytes
 
     def load_json(self):
-        pass
+        body = self.get_response_body()  # bytes
+        return json.loads(body.decode("utf-8"))
